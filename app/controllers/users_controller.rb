@@ -7,12 +7,12 @@ class UsersController < ApplicationController
 
 	def create
 		
-		user = User.new(create_params)
+		interactor = V1::Users::Create.call(params: create_params)
 
-		if user.save
-			render json: {user: user}, status: :ok
+		if interactor.success?
+			render json: {user: interactor.result}, status: :ok
 		else
-			render json: {error: user.errors.full_messages}, status: :bad_request
+			render json: {error: interactor.error}, status: :bad_request
 		end
 
 	end
