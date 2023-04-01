@@ -1,0 +1,7 @@
+:verbose: false
+:concurrency: 5
+:average_scheduled_poll_interval: 2
+:queues:
+  - ['default', 5]
+development:
+  :verbose: true

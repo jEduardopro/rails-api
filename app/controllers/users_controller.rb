@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
 
-
 	def index 
 
 	end
 
 	def create
-		
 		interactor = V1::Users::Create.call(params: create_params)
 
 		if interactor.success?
@@ -14,7 +12,6 @@ class UsersController < ApplicationController
 		else
 			render json: {error: interactor.error}, status: :bad_request
 		end
-
 	end
 
 	private 
@@ -22,5 +19,4 @@ class UsersController < ApplicationController
 	def create_params
 		params.permit(:name, :email)
 	end
-
 end

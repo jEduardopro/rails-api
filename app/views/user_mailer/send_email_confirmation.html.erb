@@ -1,0 +1,25 @@
+<div style="padding:24px">
+  <h1 style="text-align:center;display:block; font-weight:bold;font-size:24px">
+    Confirm your email
+  </h1>
+</div>
+
+<div style="padding:0 24px;display: flex;">
+  <p style="font-size:16px;color:#212121;line-height:24px;">
+    Hi <%= @user.name %>,
+  </p>
+</div>
+
+<div style="padding:0 24px;display: flex;">
+  <p style="font-size:16px;color:#212121;line-height:24px;">
+    You have completed the first step to confirm your account
+
+	
+<a
+	style="border-radius:4px;font-size:14px;line-height:16px;
+	text-decoration:none;padding:10px 16px;background-color:#0F77CC;color:#ffffff;text-transform:uppercase"
+	href=<%= @front_end_url %>
+	target="_blank"
+>
+	Confirm Email Account
+</a>

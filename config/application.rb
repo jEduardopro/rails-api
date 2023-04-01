@@ -35,5 +35,18 @@ module Crud
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+		config.active_job.queue_adapter = :sidekiq
+
+		config.action_mailer.delivery_method = :smtp
+		config.action_mailer.smtp_settings = {
+			:user_name => '7aa78d9c9180dc',
+			:password => 'f9c9ab7fc2bcbf',
+			:address => 'sandbox.smtp.mailtrap.io',
+			:domain => 'sandbox.smtp.mailtrap.io',
+			:port => '2525',
+			:authentication => :cram_md5
+		}
+
   end
 end
