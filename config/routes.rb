@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 	end
 
 	post 'auth/register', action: :create, controller: :users
-
-
+	post 'auth/verify', action: :verify_user_email, controller: :verifications
 
 end
