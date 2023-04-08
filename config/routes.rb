@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'registrations/sign_up'
+  get 'registrations/sign_in'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
