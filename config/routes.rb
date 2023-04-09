@@ -12,13 +12,15 @@ Rails.application.routes.draw do
 
 	# resources :users
 
-	resources :users, only: %i[] do 
+	resources :users, only: %i[create] do 
 		# collection do
 		# 	post 'register', action: :create
 		# end
 	end
 
-	post 'auth/register', action: :create, controller: :users
-	post 'auth/verify', action: :verify_user_email, controller: :verifications
+	scope :auth do 
+		post 'register', action: :sign_up, controller: :registrations
+		post 'verify', action: :verify_user_email, controller: :verifications
+	end
 
 end

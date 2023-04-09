@@ -18,15 +18,17 @@ module V1
 					# rescue ActiveSupport::MessageVerifier::InvalidSignature	
 
 					return context.result = user if user.update(email_confirmation: DateTime.now)
-					fail_context!('The verification failed.')
+					fail_context!(user.errors.full_messages)
 				end
 
 				private 
 
 				delegate :params, to: :context
 
+				attr_accessor :user
+
 				def valid?
-					user = User.find_by(email: params[:email])
+					@user = User.find_by(email: params[:email])
 
 					if user.blank?
 						fail_context!('User not found.')

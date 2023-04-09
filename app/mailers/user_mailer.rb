@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def send_email_confirmation(user:)		
 		@user = user
-		@token = VERIFIER.generate(user.email, expires_in: 30.seconds, purpose: :login)
+		@token = VERIFIER.generate(user.email, expires_in: 5.minutes, purpose: :login)
 		@front_end_url = "http://localhost:9000?email=#{user.email}&token=#{@token}"
     mail(
 			to: user.email,
