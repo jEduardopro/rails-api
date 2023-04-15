@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-
+	class GenerateTokenError < StandardError; end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -7,7 +7,14 @@ class UserMailer < ApplicationMailer
   #
   def send_email_confirmation(user:)		
 		@user = user
-		@token = VERIFIER.generate(user.email, expires_in: 5.minutes, purpose: :login)
+		token = user.generate_token
+
+		if !token
+			raise GenerateTokenError.new(token.errors.full_messages)
+		end
+
+		@token = token.token
+
 		@front_end_url = "http://localhost:9000?email=#{user.email}&token=#{@token}"
     mail(
 			to: user.email,
@@ -15,4 +22,5 @@ class UserMailer < ApplicationMailer
 			subject: 'Email Confirmation'
 		)
   end
+	
 end

@@ -13,13 +13,20 @@
 <div style="padding:0 24px;display: flex;">
   <p style="font-size:16px;color:#212121;line-height:24px;">
     You have completed the first step to confirm your account
+	</p>
+</div>
 
-	
-<a
-	style="border-radius:4px;font-size:14px;line-height:16px;
-	text-decoration:none;padding:10px 16px;background-color:#0F77CC;color:#ffffff;text-transform:uppercase"
-	href=<%= @front_end_url %>
-	target="_blank"
->
-	Confirm Email Account <%= @token %>
-</a>
+<p style="text-align:center; margin: 10px;">
+	<%= @token %>
+</p>
+
+<div style="padding:0 24px;display: flex; text-align:center">
+	<a
+		style="border-radius:4px;font-size:14px;line-height:16px;
+		text-decoration:none;padding:10px 16px;background-color:#0F77CC;color:#ffffff;text-transform:uppercase"
+		href=<%= @front_end_url %>
+		target="_blank"
+	>
+		Confirm Email Account
+	</a>
+</div>

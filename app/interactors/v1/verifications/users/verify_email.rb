@@ -3,31 +3,50 @@ module V1
 		module Users
 			class VerifyEmail
 				include Interactor
-				PASSWORD_RESET_SECRET = Rails.application.credentials.password_reset_secret
-				VERIFIER = ActiveSupport::MessageVerifier.new(PASSWORD_RESET_SECRET)
+				TOKEN_EXPIRATION_TIME = 90.seconds
 
 				before do
 					valid?
 				end
 
-				def call
-					token_verified = VERIFIER.verified(params[:token], purpose: :login)
-					if token_verified.nil?
-						fail_context!('The token has been expired.')
-					end
-					# rescue ActiveSupport::MessageVerifier::InvalidSignature	
+				def call					
+					@user_token = user.tokens.find_by(token: params[:token])
 
-					return context.result = user if user.update(email_confirmation: DateTime.now)
-					fail_context!(user.errors.full_messages)
+					if user_token.blank?
+						fail_context!('The token is invalid.')
+					end
+
+					if token_expired?
+						fail_context!('The token is already expired.')
+					end
+
+					ActiveRecord::Base.transaction do 
+						user.update!(email_confirmation: DateTime.now)
+						user_token.destroy!
+					end
+
+					context.result = user
+
+				rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotDestroyed => e					
+					fail_context!(e.message)
 				end
 
 				private 
 
 				delegate :params, to: :context
 
-				attr_accessor :user
+				attr_accessor :user, :user_token
 
 				def valid?
+					
+					if params[:email].blank?
+						fail_context!('Email is required.')
+					end
+
+					if params[:token].blank?
+						fail_context!('Token is required.')
+					end
+					
 					@user = User.find_by(email: params[:email])
 
 					if user.blank?
@@ -42,6 +61,11 @@ module V1
 				def fail_context!(message)
 					context.fail!(error: message)
 				end
+
+				def token_expired?
+					user_token.created_at + TOKEN_EXPIRATION_TIME < Time.zone.now
+				end
+				
 			end
 		end
 	end

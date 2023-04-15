@@ -12,6 +12,7 @@ gem "interactor", "~> 3.0"
 gem "bcrypt"
 gem "redis"
 gem "sidekiq"
+gem "jwt"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

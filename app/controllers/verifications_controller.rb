@@ -10,9 +10,19 @@ class VerificationsController < ApplicationController
 		end
 	end
 
+	def resend_verify_user_email
+		V1::Verifications::Users::ResendVerifyEmail.call(params: resend_verify_user_email_params)
+		head(:ok)
+	end
+	
+
 	private
 
 	def verify_user_email_params
 		params.permit(:email, :token)
+	end
+
+	def resend_verify_user_email_params
+		params.permit(:email)
 	end
 end

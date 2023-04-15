@@ -36,10 +36,18 @@ class User < ApplicationRecord
 	has_one :address
 	has_many :funnels
 	has_many :pages, through: :funnels
+	has_many :tokens
+	has_many :auth_tokens
 
 	def email_confirmed?
 		email_confirmation.present?
 	end
+
+	def generate_token
+		token = SecureRandom.hex(4)
+		tokens.create(token: token)
+	end
+	
 
 	private 
 
