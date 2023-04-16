@@ -8,7 +8,7 @@ module JwtAuth
 	def validate_jwt_auth
 		authenticate_with_http_token do |token|		
 			return false if AuthToken.find_by(token: token).present?
-			
+
 			payload = JWT.decode(*[token, '7dc97b5b916eaa5df43a5ef87596d884cc77e9d3c400c4cb6131f2429026bae7']).first
 			data = payload['data']
 			

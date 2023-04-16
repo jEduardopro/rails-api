@@ -18,6 +18,16 @@ gem "kaminari"
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 	gem "pry-rails"
+	gem "rspec-rails"
+	gem "rspec-json_expectations"
+	gem "factory_bot_rails"
+	gem "faker"
+	gem "timecop"
+end
+
+group :test do
+	gem 'shoulda-matchers'
+	gem 'database_cleaner'
 end
 
 group :development do
