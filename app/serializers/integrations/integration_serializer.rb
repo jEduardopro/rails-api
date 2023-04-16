@@ -65,7 +65,7 @@ module Integrations
     end
 
     def total_excluded_attributes
-      %i[organization_id id created_at updated_at uuid].concat(excluded_attributes)
+      %i[id created_at updated_at].concat(excluded_attributes)
     end
 
     def excluded_attributes
