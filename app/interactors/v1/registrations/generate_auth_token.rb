@@ -2,7 +2,7 @@ module V1
 	module Registrations
 		class GenerateAuthToken
 			include Interactor
-			TOKEN_EXPIRATION_SECONDS = 30
+			TOKEN_EXPIRATION_SECONDS = 84000
 
 			def call
 				if user.blank?

@@ -13,6 +13,7 @@ gem "bcrypt"
 gem "redis"
 gem "sidekiq"
 gem "jwt"
+gem "kaminari"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

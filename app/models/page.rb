@@ -1,3 +1,5 @@
 class Page < ApplicationRecord
-  belongs_to :funnel
+	include HasUuid
+	PREFIX = 'pag'
+  belongs_to :funnel, optional: true
 end

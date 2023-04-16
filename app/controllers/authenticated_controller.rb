@@ -1,6 +1,7 @@
 class AuthenticatedController < ApplicationController
 
 	include ActionController::HttpAuthentication::Token::ControllerMethods
+	include InteractorRenderHelper
 
 	include JwtAuth
 	attr_reader :user
