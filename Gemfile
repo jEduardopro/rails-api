@@ -14,6 +14,11 @@ gem "redis"
 gem "sidekiq"
 gem "jwt"
 gem "kaminari"
+gem 'config', '= 4.0.0' # handle environment specific settings
+gem 'shrine' # toolkit for handling file attachments
+gem 'aws-sdk-s3', '~> 1' # for AWS S3 storage with shrine
+gem 'mini_magick' # for image configuration transformations with shrine
+gem 'image_processing' # for handling derivates with shrine and mini magick
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

@@ -1,5 +1,11 @@
 
 class User < ApplicationRecord
+
+	include Core::Infrastructure::Uploaders::UserCoverPhoto::Attachment(
+    :cover_photo,
+    store: :users_cover_photos,
+    cache: :users_cache
+  )
   # users.password_hash in the database is a :string
 
 	# rails model validation reference link to search

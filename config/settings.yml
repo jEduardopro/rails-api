@@ -1,0 +1,9 @@
+shrine:
+  users_cache:
+    bucket_name:
+    region: 'us-west-2'
+    file_prefix: 'cache'
+  users_cover_photos:
+    bucket_name:
+    region: 'us-west-2'
+    file_prefix: 'users_cover_photos'

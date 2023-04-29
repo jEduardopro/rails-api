@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_010131) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_29_174136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_010131) do
     t.string "password_digest"
     t.datetime "email_confirmation"
     t.string "password_salt"
+    t.text "cover_photo_data"
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
   end
 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 	# resources :users
 
-	resources :users, only: %i[create] do 
+	resources :users, only: %i[create update] do 
 		# collection do
 		# 	post 'register', action: :create
 		# end
